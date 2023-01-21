@@ -10,6 +10,6 @@ Inspired by [ericzhang-cn/kindle-open-books](https://github.com/ericzhang-cn/kin
 
 + getting_real.recipe - [Getting Real](https://basecamp.com/gettingreal)
 
-# Usage
+## Usage
 
 Please refer to the [Calibre Manual](https://manual.calibre-ebook.com/news.html).
