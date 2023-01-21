@@ -13,7 +13,3 @@ Inspired by [ericzhang-cn/kindle-open-books](https://github.com/ericzhang-cn/kin
 # Usage
 
 Please refer to the [Calibre Manual](https://manual.calibre-ebook.com/news.html).
-
-# Contributing
-
-Please read the `CONTRIBUTING` document.
