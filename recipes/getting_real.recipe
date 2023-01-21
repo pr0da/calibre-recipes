@@ -1,0 +1,41 @@
+from calibre.web.feeds.recipes import BasicNewsRecipe
+
+
+class Getting_Real(BasicNewsRecipe):
+
+    title = 'Getting Real'
+    description = 'The smarter, faster, easier way to build a successful web application. Getting Real is packed with keep-it-simple insights, contrarian points of view, and unconventional approaches to software design. This isn’t a technical book or a design tutorial, it’s a book of ideas. Anyone working on a web app — including entrepreneurs, designers, programmers, executives, or marketers — will find value and inspiration in this book.'
+    cover_url = 'https://37signals.com/assets/images/books/getting-real.png'
+    base_url = 'https://basecamp.com'
+    keep_only_tags = [
+        {'class': 'intro__masthead'},
+        {'class': 'intro__title'},
+        {'class': 'content'}
+    ]
+    remove_tags = [
+        dict(name='template'),
+        dict(attrs={'class': 'hidden-print'})
+    ]
+
+    def parse_index(self):
+        soup = self.index_to_soup(self.base_url + '/gettingreal')
+        toc_root = soup.find('div', {'class': 'toc'})
+
+        articles = []
+        section_index = 1
+        artical_index = 1
+        for section in toc_root.findAll('div', {'class': 'toc__part'}):
+            section_index = section_index + 1
+
+            for chapter in section.findAll('li', {'class': 'toc__chapter'}):
+                chapter_link = chapter.find('a')
+                chapter_title = str(artical_index) + '. ' + \
+                    chapter_link.contents[0].strip()
+                artical_index = artical_index + 1
+                url = self.base_url + chapter_link['href']
+                a = {'title': chapter_title, 'url': url}
+                articles.append(a)
+
+        ans = [(self.title, articles)]
+
+        return ans
